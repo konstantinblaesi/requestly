@@ -1,7 +1,6 @@
-import React from "react";
 import { Table, Tag } from "antd";
-import { getMockType } from "utils/files/FilesService";
 import APP_CONSTANTS from "config/constants";
+import { getMockType } from "utils/files/FilesService";
 
 const FilesLibraryTable = ({ filesList, updateCollection, mode, callback }) => {
   //Convert files-list object into an array with properties that are required
@@ -89,7 +88,7 @@ const FilesLibraryTable = ({ filesList, updateCollection, mode, callback }) => {
       render: (url) => (
         <span>
           <a
-            href="https://app.requestly.io"
+            href="https://requestly.local:5577"
             onClick={(e) => {
               e.preventDefault();
               callback(url);

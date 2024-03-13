@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Card, Col, Row, Button, Input, message } from "antd";
 import { GlobalOutlined, ImportOutlined } from "@ant-design/icons";
+import { Button, Card, Col, Input, Row, message } from "antd";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { isValidRQUrl } from "utils/FormattingHelper";
+import { redirectToSharedListViewer } from "utils/RedirectionUtils";
 import {
+  fetchSharedListData,
   getSharedListIdFromImportURL,
   getSharedListNameFromUrl,
-  fetchSharedListData,
 } from "../SharedListViewerIndexPage/actions/";
-import { useNavigate } from "react-router-dom";
-import { redirectToSharedListViewer } from "utils/RedirectionUtils";
 const ImportSharedListIndexPage = () => {
   const navigate = useNavigate();
   // Component State
@@ -45,7 +45,7 @@ const ImportSharedListIndexPage = () => {
         <Row justify="center">
           <Col span={16}>
             <Input
-              placeholder="https://app.requestly.io/shared-lists/viewer/12345678-AB-CB"
+              placeholder="https://requestly.local:5577/shared-lists/viewer/12345678-AB-CB"
               prefix={<GlobalOutlined className="site-form-item-icon" />}
               value={inputURL}
               onChange={(e) => setInputURL(e.target.value)}

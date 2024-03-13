@@ -1,25 +1,25 @@
-import React, { useCallback, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { CheckOutlined, SettingOutlined } from "@ant-design/icons";
 import { BsShieldCheck } from "@react-icons/all-files/bs/BsShieldCheck";
-import { Button, Divider, Input, Row, Col, Typography, InputRef, Space } from "antd";
-import { actions } from "store";
 import { isExtensionInstalled, startRecordingOnUrl } from "actions/ExtensionActions";
-import { isValidUrl } from "utils/FormattingHelper";
-import { toast } from "utils/Toast";
-import { prefixUrlWithHttps } from "utils/URLUtils";
-import StartSessionRecordingGif from "./assets/sessions-banner.gif";
+import { Button, Col, Divider, Input, InputRef, Row, Space, Typography } from "antd";
 import {
   trackInstallExtensionDialogShown,
-  trackOnboardingToSettingsNavigate,
-  trackOnboardingSampleSessionViewed,
   trackOnboardingPageViewed,
+  trackOnboardingSampleSessionViewed,
+  trackOnboardingToSettingsNavigate,
   trackStartRecordingOnExternalTarget,
   trackStartRecordingWithURLClicked,
   trackTriedRecordingForInvalidURL,
 } from "modules/analytics/events/features/sessionRecording";
-import "./index.scss";
+import React, { useCallback, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { actions } from "store";
+import { isValidUrl } from "utils/FormattingHelper";
+import { toast } from "utils/Toast";
+import { prefixUrlWithHttps } from "utils/URLUtils";
 import { ImportHarModalButton } from "../NetworkSessions/ImportHarModalButton";
+import StartSessionRecordingGif from "./assets/sessions-banner.gif";
+import "./index.scss";
 
 const { Text, Title } = Typography;
 
@@ -211,7 +211,7 @@ export const SessionOnboardingView: React.FC<SessionOnboardProps> = ({
             </Row>
             <Row onClick={trackOnboardingSampleSessionViewed}>
               <a
-                href="https://app.requestly.io/sessions/saved/24wBYgAaKlgqCOflTTJj"
+                href="https://requestly.local:5577/sessions/saved/24wBYgAaKlgqCOflTTJj"
                 target="__blank"
                 className="sample-link-container"
               >

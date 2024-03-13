@@ -1,38 +1,38 @@
-import React, { useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd";
-import { toast } from "utils/Toast.js";
+import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "utils/Toast.js";
 //ACTIONS
 import { addRulesAndGroupsToStorage, processDataToImport } from "../../rules/ImportRulesModal/actions";
 //UTILS
-import { redirectToRules } from "../../../../utils/RedirectionUtils";
-import { getAppMode, getUserAuthDetails } from "../../../../store/selectors";
 import { getAllRules } from "store/features/rules/selectors";
 import { isExtensionInstalled } from "../../../../actions/ExtensionActions";
+import { getAppMode, getUserAuthDetails } from "../../../../store/selectors";
+import { redirectToRules } from "../../../../utils/RedirectionUtils";
 //CONSTANTS
 import { CONSTANTS as GLOBAL_CONSTANTS } from "@requestly/requestly-core";
 import { SOURCE } from "modules/analytics/events/common/constants";
 //UTILS
-import ProCard from "@ant-design/pro-card";
-import RulesTable from "components/features/rules/RulesListContainer/RulesTable";
 import { ImportOutlined } from "@ant-design/icons";
+import ProCard from "@ant-design/pro-card";
+import { useFeatureValue } from "@growthbook/growthbook-react";
+import RulesTable from "components/features/rules/RulesListContainer/RulesTable";
+import APP_CONSTANTS from "config/constants";
+import { trackUpgradeToastViewed } from "features/pricing/components/PremiumFeature/analytics";
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { FeatureLimitType } from "hooks/featureLimiter/types";
+import { useFeatureLimiter } from "hooks/featureLimiter/useFeatureLimiter";
+import { snakeCase } from "lodash";
 import {
   trackSharedListImportCompleted,
   trackSharedListImportFailed,
   trackSharedListImportStartedEvent,
 } from "modules/analytics/events/features/sharedList";
 import { trackTemplateImportCompleted } from "modules/analytics/events/features/templates";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { getSharedListIdFromURL } from "../SharedListViewerIndexPage/actions";
 import { actions } from "store";
 import { getIsWorkspaceMode } from "store/features/teams/selectors";
-import APP_CONSTANTS from "config/constants";
-import { snakeCase } from "lodash";
-import { useFeatureLimiter } from "hooks/featureLimiter/useFeatureLimiter";
-import { FeatureLimitType } from "hooks/featureLimiter/types";
-import { trackUpgradeToastViewed } from "features/pricing/components/PremiumFeature/analytics";
-import { useFeatureValue } from "@growthbook/growthbook-react";
+import { getSharedListIdFromURL } from "../SharedListViewerIndexPage/actions";
 
 const SharedListViewerTableContainer = ({ id, rules, groups }) => {
   const dispatch = useDispatch();
@@ -123,7 +123,7 @@ const SharedListViewerTableContainer = ({ id, rules, groups }) => {
 
     sendSharedListImportAsEmail({
       email: user.loggedIn ? user.details.profile.email : "user_not_logged_in",
-      url: "https://app.requestly.io" + location.pathname,
+      url: "https://requestly.local:5577" + location.pathname,
       rules: rules,
       sharedListId: sharedListId,
     }).catch((err) => {

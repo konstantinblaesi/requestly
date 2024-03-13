@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
-import { getUserAttributes, getUserAuthDetails } from "store/selectors";
-import { featureLimits } from "./featureLimitTypes";
-import { useDispatch } from "react-redux";
-import { actions } from "store";
-import { FeatureLimitType } from "./types";
-import { getPlanNameFromId } from "utils/PremiumUtils";
 import { PRICING } from "features/pricing";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserAttributes, getUserAuthDetails } from "store/selectors";
+import { getPlanNameFromId } from "utils/PremiumUtils";
+import { FeatureLimitType } from "./types";
 
 const premiumPlansToCheckLimit = [PRICING.PLAN_NAMES.LITE, PRICING.PLAN_NAMES.BASIC, PRICING.PLAN_NAMES.BASIC_V2];
 
@@ -17,17 +14,18 @@ export const useFeatureLimiter = () => {
   const userPlan = isUserPremium ? getPlanNameFromId(user?.details?.planDetails?.planId) : PRICING.PLAN_NAMES.FREE;
 
   const checkFeatureLimits = () => {
-    if (isUserPremium && !premiumPlansToCheckLimit.includes(userPlan)) {
-      if (user.isLimitReached) {
-        dispatch(actions.updateUserLimitReached(false));
-      }
-      return;
-    }
+    return;
+    // if (isUserPremium && !premiumPlansToCheckLimit.includes(userPlan)) {
+    //   if (user.isLimitReached) {
+    //     dispatch(actions.updateUserLimitReached(false));
+    //   }
+    //   return;
+    // }
 
-    const isLimitReached = Object.values(FeatureLimitType).some((featureLimitType) =>
-      checkIfFeatureLimitReached(featureLimitType, "breached")
-    );
-    dispatch(actions.updateUserLimitReached(isLimitReached));
+    // const isLimitReached = Object.values(FeatureLimitType).some((featureLimitType) =>
+    //   checkIfFeatureLimitReached(featureLimitType, "breached")
+    // );
+    // dispatch(actions.updateUserLimitReached(isLimitReached));
   };
 
   const checkIfFeatureLimitReached = (featureLimitType: FeatureLimitType, checkType: "breached" | "reached") => {
@@ -47,19 +45,21 @@ export const useFeatureLimiter = () => {
   };
 
   const getFeatureLimitValue = (featureLimitType: FeatureLimitType) => {
-    if (!(featureLimitType in FeatureLimitType)) return true; // free feature
+    return true;
+    // if (!(featureLimitType in FeatureLimitType)) return true; // free feature
 
-    if (isUserPremium && !premiumPlansToCheckLimit.includes(userPlan)) return Infinity;
+    // if (isUserPremium && !premiumPlansToCheckLimit.includes(userPlan)) return Infinity;
 
-    return (
-      featureLimits[userPlan]?.[featureLimitType] ?? featureLimits[PRICING.PLAN_NAMES.BASIC_V2]?.[featureLimitType] // if plan is not found, return basic plan limit eg: for lite plan
-    );
+    // return (
+    //   featureLimits[userPlan]?.[featureLimitType] ?? featureLimits[PRICING.PLAN_NAMES.BASIC_V2]?.[featureLimitType] // if plan is not found, return basic plan limit eg: for lite plan
+    // );
   };
 
   const getIsFeatureEnabled = (featureLimitType: FeatureLimitType) => {
-    return (
-      featureLimits[userPlan]?.[featureLimitType] ?? featureLimits[PRICING.PLAN_NAMES.BASIC_V2]?.[featureLimitType]
-    );
+    return true;
+    // return (
+    //   featureLimits[userPlan]?.[featureLimitType] ?? featureLimits[PRICING.PLAN_NAMES.BASIC_V2]?.[featureLimitType]
+    // );
   };
 
   return {

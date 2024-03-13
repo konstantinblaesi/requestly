@@ -8,7 +8,7 @@ export const getRandomAvatar = () => {
     return "https://yoda.hypeople.studio/yoda-admin-template/react/static/media/memoji-1.afa5922f.png";
   }
 
-  return `https://app.requestly.io/assets/img/memoji/png/analytics-marketing-team-${randomNumber}.png`;
+  return `https://requestly.local:5577/assets/img/memoji/png/analytics-marketing-team-${randomNumber}.png`;
 };
 
 export const generateGravatarURL = (email = "sagar@requestly.io") => {

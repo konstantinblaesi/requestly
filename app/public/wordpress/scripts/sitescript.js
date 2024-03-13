@@ -1,7 +1,5 @@
-var chromeStoreUrl =
-  "https://chrome.google.com/webstore/detail/requestly/mdnleldcmiljblolnjhpnblkcekpdkpa";
-var firefoxInstallationUrl =
-  "https://app.requestly.io/firefox/builds/requestly-latest.xpi";
+var chromeStoreUrl = "https://chrome.google.com/webstore/detail/requestly/mdnleldcmiljblolnjhpnblkcekpdkpa";
+var firefoxInstallationUrl = "https://requestly.local:5577/firefox/builds/requestly-latest.xpi";
 
 var isFirefox = typeof InstallTrigger !== "undefined";
 

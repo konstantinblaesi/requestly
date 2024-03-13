@@ -1,24 +1,23 @@
+import { Avatar, Col, Dropdown, Spin, Tooltip } from "antd";
+import { handleLogoutButtonOnClick } from "components/authentication/AuthForm/actions";
+import APP_CONSTANTS from "config/constants";
+import { PRICING } from "features/pricing";
+import { RQButton } from "lib/design-system/components";
+import { trackHeaderClicked } from "modules/analytics/events/common/onboarding/header";
+import { trackUpgradeClicked } from "modules/analytics/events/misc/monetizationExperiment";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Dropdown, Col, Avatar, Spin, Button, Tooltip } from "antd";
-import { getAppMode, getUserAuthDetails } from "store/selectors";
 import { actions } from "store";
+import { getIsWorkspaceMode } from "store/features/teams/selectors";
+import { getAppMode, getUserAuthDetails } from "store/selectors";
+import { parseGravatarImage } from "utils/Misc";
 import {
   redirectToAccountDetails,
   redirectToGlobalSettings,
   redirectToProfileSettings,
   redirectToWorkspaceSettings,
 } from "utils/RedirectionUtils";
-import { handleLogoutButtonOnClick } from "components/authentication/AuthForm/actions";
-import APP_CONSTANTS from "config/constants";
-import { SOURCE } from "modules/analytics/events/common/constants";
-import { parseGravatarImage } from "utils/Misc";
-import { getIsWorkspaceMode } from "store/features/teams/selectors";
-import { trackHeaderClicked } from "modules/analytics/events/common/onboarding/header";
-import { RQButton } from "lib/design-system/components";
-import { PRICING } from "features/pricing";
-import { trackUpgradeClicked } from "modules/analytics/events/misc/monetizationExperiment";
 
 export default function HeaderUser() {
   const navigate = useNavigate();
@@ -151,7 +150,7 @@ export default function HeaderUser() {
               showArrow={false}
               overlayClassName="signup-btn-popover"
             >
-              <Button
+              {/* <Button
                 style={{ fontWeight: 500 }}
                 type="primary"
                 className="layout-header-signup-btn"
@@ -171,7 +170,7 @@ export default function HeaderUser() {
                 }}
               >
                 Get a 30-day free trial
-              </Button>
+              </Button> */}
             </Tooltip>
           </Col>
         </>

@@ -1,30 +1,29 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import isEmpty from "is-empty";
-import APP_CONSTANTS from "./config/constants";
-import { submitAppDetailAttributes } from "utils/AnalyticsUtils.js";
+import { GrowthBookProvider } from "@growthbook/growthbook-react";
 import { ConfigProvider } from "antd";
 import enUS from "antd/lib/locale/en_US";
-import useGeoLocation from "hooks/useGeoLocation";
-import DashboardLayout from "layouts/DashboardLayout";
-import FullScreenLayout from "layouts/FullScreenLayout";
-import UpdateDialog from "components/mode-specific/desktop/UpdateDialog";
-import ThirdPartyIntegrationsHandler from "hooks/ThirdPartyIntegrationsHandler";
 import { CommandBar } from "components/misc/CommandBar";
-import { GrowthBookProvider } from "@growthbook/growthbook-react";
-import { growthbook } from "utils/feature-flag/growthbook";
-import LocalUserAttributesHelperComponent from "hooks/LocalUserAttributesHelperComponent";
-import PreLoadRemover from "hooks/PreLoadRemover";
+import UpdateDialog from "components/mode-specific/desktop/UpdateDialog";
 import AppModeInitializer from "hooks/AppModeInitializer";
 import DBListeners from "hooks/DbListenerInit/DBListeners";
+import LocalUserAttributesHelperComponent from "hooks/LocalUserAttributesHelperComponent";
+import PreLoadRemover from "hooks/PreLoadRemover";
+import ThirdPartyIntegrationsHandler from "hooks/ThirdPartyIntegrationsHandler";
+import useGeoLocation from "hooks/useGeoLocation";
+import isEmpty from "is-empty";
+import DashboardLayout from "layouts/DashboardLayout";
+import FullScreenLayout from "layouts/FullScreenLayout";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { submitAppDetailAttributes } from "utils/AnalyticsUtils.js";
+import { growthbook } from "utils/feature-flag/growthbook";
+import APP_CONSTANTS from "./config/constants";
 // import RuleExecutionsSyncer from "hooks/RuleExecutionsSyncer";
-import FeatureUsageEvent from "hooks/FeatureUsageEvent";
+import ExtensionContextInvalidationNotice from "components/misc/ExtensionContextInvalidationNotice";
+import { LazyMotion, domMax } from "framer-motion";
+import { useIsExtensionEnabled } from "hooks";
 import ActiveWorkspace from "hooks/ActiveWorkspace";
 import AuthHandler from "hooks/AuthHandler";
-import ExtensionContextInvalidationNotice from "components/misc/ExtensionContextInvalidationNotice";
-import { useIsExtensionEnabled } from "hooks";
-import { LazyMotion, domMax } from "framer-motion";
-import { useBillingTeamsListener } from "backend/billing/hooks/useBillingTeamsListener";
+import FeatureUsageEvent from "hooks/FeatureUsageEvent";
 
 const { PATHS } = APP_CONSTANTS;
 
@@ -38,7 +37,7 @@ const App = () => {
 
   useGeoLocation();
   useIsExtensionEnabled();
-  useBillingTeamsListener();
+  // useBillingTeamsListener();
   // useInitializeNewUserSessionRecordingConfig();
 
   submitAppDetailAttributes();

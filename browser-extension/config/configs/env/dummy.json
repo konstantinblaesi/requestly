@@ -1,5 +1,5 @@
 {
-  "WEB_URL": "https://app.requestly.io",
-  "OTHER_WEB_URLS": ["https://app.requestly.com"],
+  "WEB_URL": "https://requestly.local:5577",
+  "OTHER_WEB_URLS": ["https://requestly.local:5577"],
   "logLevel": "debug"
 }

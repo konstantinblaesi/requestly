@@ -1,26 +1,26 @@
+import { GA_EVENTS } from "./sub/analytics";
+import AUTH from "./sub/auth";
+import { CONTENT_TYPE_OPTIONS } from "./sub/contentType";
+import COOKIES from "./sub/cookies";
+import EMAIL_DOMAINS from "./sub/email-domains";
 import FEATURES from "./sub/features";
+import FILES_TABLE_CONSTANTS from "./sub/files-table-constants";
+import HEADER_SUGGESTIONS from "./sub/header-suggestions";
+import LIMIT_REACHED_MODAL from "./sub/limit-reached-modal";
 import LINKS from "./sub/links";
-import PATHS from "./sub/paths";
 import MARKETPLACE_TABLE_CONSTANTS from "./sub/marketplace-table-constants";
+import { METHOD_TYPE_OPTIONS } from "./sub/methodType";
+import MOCK_TYPES_CONFIG from "./sub/mock-types";
+import PATHS from "./sub/paths";
 import RULE_EDITOR_CONFIG from "./sub/rule-editor";
 import RULE_TYPES_CONFIG from "./sub/rule-types";
 import RULES_LIST_TABLE_CONSTANTS from "./sub/rules-list-table-constants";
-import MOCK_TYPES_CONFIG from "./sub/mock-types";
-import { STATUS_CODE_OPTIONS } from "./sub/statusCode";
-import { CONTENT_TYPE_OPTIONS } from "./sub/contentType";
-import { METHOD_TYPE_OPTIONS } from "./sub/methodType";
 import SHARED_LISTS_TABLE_CONSTANTS from "./sub/shared-lists-table-constants";
-import FILES_TABLE_CONSTANTS from "./sub/files-table-constants";
-import THEME_COLORS from "./sub/theme-colors";
-import AUTH from "./sub/auth";
-import LIMIT_REACHED_MODAL from "./sub/limit-reached-modal";
-import EMAIL_DOMAINS from "./sub/email-domains";
+import { STATUS_CODE_OPTIONS } from "./sub/statusCode";
 import STYLES from "./sub/styles";
-import COOKIES from "./sub/cookies";
-import THEMES from "./sub/themes";
-import HEADER_SUGGESTIONS from "./sub/header-suggestions";
 import TEAM_WORKSPACES from "./sub/team-workspaces";
-import { GA_EVENTS } from "./sub/analytics";
+import THEME_COLORS from "./sub/theme-colors";
+import THEMES from "./sub/themes";
 
 const APP_CONSTANTS = {};
 
@@ -111,7 +111,7 @@ APP_CONSTANTS.COOKIES = COOKIES;
 APP_CONSTANTS.DESKTOP_APP_MIN_COMPATIBLE_VERSION = "1.4.20";
 APP_CONSTANTS.DESKTOP_APP_MIN_NON_BREAKING_VERSION = "1.4.20";
 
-APP_CONSTANTS.PROD_RULES_URL = "https://app.requestly.io/rules";
+APP_CONSTANTS.PROD_RULES_URL = "https://requestly.local:5577/rules";
 
 APP_CONSTANTS.TEAM_WORKSPACES = TEAM_WORKSPACES;
 

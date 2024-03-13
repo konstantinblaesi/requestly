@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Row, Space, Typography } from "antd";
-import { Alert } from "antd";
-import UAParser from "ua-parser-js";
-import { actions } from "store";
-import { supportedBrowserExtensions } from "./supportedBrowserExtensions";
+import { Space, Typography } from "antd";
 import LINKS from "config/constants/sub/links";
-import APP_CONSTANTS from "../../../config/constants";
-import { InstallExtensionContent } from "./type";
 import {
-  trackViewAllPlatformsClicked,
   trackExtensionInstallationButtonClicked,
+  trackViewAllPlatformsClicked,
 } from "modules/analytics/events/common/onboarding/index";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { actions } from "store";
+import UAParser from "ua-parser-js";
 import "./installExtensionCTA.css";
+import { supportedBrowserExtensions } from "./supportedBrowserExtensions";
+import { InstallExtensionContent } from "./type";
 
 const HEADING = "Install Browser extension to start modifying network requests";
 const SUBHEADING =
@@ -99,7 +97,7 @@ const InstallExtensionCTA: React.FC<InstallExtensionContent> = ({
         </p>
       )}
 
-      {browser && !isUpdateRequired ? (
+      {/* {browser && !isUpdateRequired ? (
         <Row style={{ textAlign: "center" }}>
           <Alert
             message={
@@ -120,7 +118,7 @@ const InstallExtensionCTA: React.FC<InstallExtensionContent> = ({
             style={{ marginTop: "1rem" }}
           />
         </Row>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

@@ -1,12 +1,13 @@
-import { defineConfig, transformWithEsbuild, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
-import viteTsconfigPaths from "vite-tsconfig-paths";
-import svgr from "vite-plugin-svgr";
-import commonjs from "vite-plugin-commonjs";
-import { nodePolyfills } from "vite-plugin-node-polyfills";
 import { getThemeVariables } from "antd/dist/theme";
-import { theme } from "./src/lib/design-system/theme";
+import { defineConfig, loadEnv, transformWithEsbuild } from "vite";
+import commonjs from "vite-plugin-commonjs";
+import mkcert from "vite-plugin-mkcert";
 import monacoEditorPlugin from "vite-plugin-monaco-editor";
+import { nodePolyfills } from "vite-plugin-node-polyfills";
+import svgr from "vite-plugin-svgr";
+import viteTsconfigPaths from "vite-tsconfig-paths";
+import { theme } from "./src/lib/design-system/theme";
 
 const config = ({ mode }) =>
   defineConfig({
@@ -15,6 +16,9 @@ const config = ({ mode }) =>
       "process.env": loadEnv(mode, process.cwd(), ""),
     },
     plugins: [
+      mkcert({
+        hosts: ["requestly.local"],
+      }),
       nodePolyfills(),
 
       // For files which has JSX elements in .js files
@@ -69,8 +73,8 @@ const config = ({ mode }) =>
       outDir: "build",
     },
     server: {
-      open: true,
-      port: 3000,
+      // open: "https://requestly.local:5577",
+      port: 5577,
       fs: {
         allow: [".."],
       },
