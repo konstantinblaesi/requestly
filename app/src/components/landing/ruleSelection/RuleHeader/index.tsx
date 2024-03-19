@@ -1,15 +1,15 @@
+import { Button, Col, Row } from "antd";
+import { PremiumIcon } from "components/common/PremiumIcon";
+import { PremiumFeature } from "features/pricing";
+import { FeatureLimitType } from "hooks/featureLimiter/types";
+import { useFeatureLimiter } from "hooks/featureLimiter/useFeatureLimiter";
+import { trackRuleCreationWorkflowStartedEvent } from "modules/analytics/events/common/rules";
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Col, Row } from "antd";
 import { RuleType } from "types/rules";
-import { getRuleDetails } from "../utils";
-import { useFeatureLimiter } from "hooks/featureLimiter/useFeatureLimiter";
-import { FeatureLimitType } from "hooks/featureLimiter/types";
-import { PremiumIcon } from "components/common/PremiumIcon";
-import { trackRuleCreationWorkflowStartedEvent } from "modules/analytics/events/common/rules";
-import "./ruleHeader.css";
-import { PremiumFeature } from "features/pricing";
 import { redirectToCreateNewRule } from "utils/RedirectionUtils";
+import { getRuleDetails } from "../utils";
+import "./ruleHeader.css";
 
 interface RuleHeaderProps {
   selectedRuleType: RuleType;

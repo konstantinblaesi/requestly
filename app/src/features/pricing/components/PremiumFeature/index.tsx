@@ -1,18 +1,16 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useFeatureLimiter } from "hooks/featureLimiter/useFeatureLimiter";
-import { useFeatureIsOn } from "@growthbook/growthbook-react";
-import { getUserAuthDetails } from "store/selectors";
-import { RequestFeatureModal } from "./components/RequestFeatureModal";
 import { Popconfirm, PopconfirmProps, Typography } from "antd";
 import { FeatureLimitType } from "hooks/featureLimiter/types";
-import { actions } from "store";
-import { trackUpgradeOptionClicked, trackUpgradePopoverViewed } from "./analytics";
 import { capitalize } from "lodash";
-import { getAvailableBillingTeams } from "store/features/billing/selectors";
-import { isCompanyEmail } from "utils/FormattingHelper";
-import "./index.scss";
 import { SOURCE } from "modules/analytics/events/common/constants";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "store";
+import { getAvailableBillingTeams } from "store/features/billing/selectors";
+import { getUserAuthDetails } from "store/selectors";
+import { isCompanyEmail } from "utils/FormattingHelper";
+import { trackUpgradeOptionClicked, trackUpgradePopoverViewed } from "./analytics";
+import { RequestFeatureModal } from "./components/RequestFeatureModal";
+import "./index.scss";
 
 interface PremiumFeatureProps {
   onContinue?: () => void;
@@ -40,15 +38,11 @@ export const PremiumFeature: React.FC<PremiumFeatureProps> = ({
   const dispatch = useDispatch();
   const user = useSelector(getUserAuthDetails);
   const billingTeams = useSelector(getAvailableBillingTeams);
-  const { getFeatureLimitValue, checkIfFeatureLimitReached } = useFeatureLimiter();
   const [openPopup, setOpenPopup] = useState(false);
 
-  const isUpgradePopoverEnabled = useFeatureIsOn("show_upgrade_popovers");
-  const isExceedingLimits = useMemo(
-    () => features.some((feat) => !(getFeatureLimitValue(feat) && !checkIfFeatureLimitReached(feat, "reached"))),
-    [features, getFeatureLimitValue, checkIfFeatureLimitReached]
-  );
-  const isBreachingLimit = features.some((feat) => checkIfFeatureLimitReached(feat, "reached"));
+  const isUpgradePopoverEnabled = false;
+  const isExceedingLimits = false;
+  const isBreachingLimit = false;
 
   const hasCrossedDeadline = new Date() > new Date("2023-11-30");
 
